@@ -1,27 +1,42 @@
-const Joi = require("joi");
+const ResponseObj = require("../utils/someObj");
+const utils = require("../utils/utils");
 
-module.exports = [
+let route_basic = [
   {
     method: "GET",
     path: "/login",
     options: {
       tags: ["api", "basic"],
-      description: "基础 api ",
-      validate: {
-        params: Joi.object({
-          id: Joi.number()
-            .required()
-            .description("the id for the todo item")
-        })
-      }
+      description: "登录接口"
     },
-    handler: (req, res) => {
+    handler: async (req, res) => {
       try {
-        console.log("reply");
-        return "Hello";
-      } catch {
-        console.log("Find Errors");
+        let responseObj = await utils.getAndSaveSessionId(req.query.code);
+        return res.response(responseObj).code(200);
+      } catch (e) {
+        console.log(e);
+        let responseObj = new ResponseObj(0, e.message);
+        return res.response(responseObj).code(200);
+      }
+    }
+  },
+  {
+    method: "GET",
+    path: "/getCards",
+    options: {
+      tags: ["api", "basic"],
+      description: "帖子接口"
+    },
+    handler: async (req, res) => {
+      try {
+        let responseObj = await utils.getCards(req.query.sessionId);
+        return res.response(responseObj).code(200);
+      } catch (e) {
+        console.log(e);
+        let responseObj = new ResponseObj(0, e.message);
+        return res.response(responseObj).code(200);
       }
     }
   }
 ];
+module.exports = { route_basic };

@@ -1,8 +1,8 @@
-require("env2")("./.env");
+require("env2")("./config/.env");
 const Hapi = require("@hapi/hapi");
 const config = require("./config/index");
-const routesHelloHapi = require("./routes/route_basic");
 const pluginHapiSwagger = require("./plugins/hapi_swagger");
+const { route } = require("./routes");
 
 const server = new Hapi.Server({
   port: config.port,
@@ -15,39 +15,7 @@ const init = async () => {
     ...pluginHapiSwagger
   ]);
 
-  server.route([
-    {
-      method: "GET",
-      path: "/login",
-      options: {
-        description: "测试",
-        notes: "测试api",
-        tags: ["api"]
-      },
-      handler: (req, res) => {
-        try {
-          console.log("reply");
-          return "Hello";
-        } catch {
-          console.log("Find Errors");
-        }
-      }
-    }
-  ]);
-
-  server.route({
-    method: "GET",
-    path: "/squre",
-    handler: (req, res) => {
-      try {
-        console.log("reply");
-        return "Hello";
-      } catch {
-        console.log("Find Errors");
-      }
-    }
-  });
-
+  server.route([...route]);
   await server.start();
   console.log(`Server is running at: ${server.info.uri}`);
 };

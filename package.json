@@ -10,18 +10,23 @@
     "hapi",
     "WeChatApp"
   ],
-  "author": "Lance Zhang",
+  "author": "Lange Zhang",
   "license": "ISC",
   "dependencies": {
     "@hapi/hapi": "^19.1.1",
     "@hapi/inert": "^6.0.1",
     "@hapi/vision": "^6.0.0",
+    "axios": "^0.19.2",
     "env2": "^2.2.2",
     "joi": "^14.3.1",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.5"
   },
   "devDependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "es-checker": "^1.4.2",
     "hapi-swagger": "^12.1.1",
     "sequelize-cli": "^5.5.1"
   }

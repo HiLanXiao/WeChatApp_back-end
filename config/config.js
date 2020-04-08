@@ -1,8 +1,8 @@
 // config/config.js
 if (process.env.NODE_ENV === "production") {
-  require("env2")("./.env.prod");
+  require("env2")("./config/.env.prod");
 } else {
-  require("env2")("./.env");
+  require("env2")("./config/.env");
 }
 
 const { env } = process;
