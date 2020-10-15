@@ -1,30 +1,30 @@
-const { users, cards } = require("../../models");
-const { ResponseObj } = require("../../utils/utils");
+const models = require('../../models');
+const { ResponseObj, timeConvert } = require('../../utils/utils');
 
 function getCards(sessionId) {
   return new Promise(async (resolve, reject) => {
     let payload = [],
       userId,
-      user = await models. users.findAll({
+      user = await models.users.findAll({
         where: {
-          sessionId: sessionId
-        }
+          sessionId: sessionId,
+        },
       });
     if (!user.length) {
-      reject(new Error("用户不存在"));
+      reject(new Error('用户不存在'));
     } else {
       userId = user[0].userId;
       for (let item of await models.cards.findAll()) {
         let cardSupportWhether = false,
           userInfo = await models.userInfo.findAll({
             where: {
-              userId: item.userId
-            }
+              userId: item.userId,
+            },
           }),
           userLikeCards = await models.userCardLikes.findAll({
             where: {
-              userId: userId
-            }
+              userId: userId,
+            },
           });
         for (let userLikeCard of userLikeCards) {
           if (userLikeCard.cardId === item.cardId) {
@@ -40,13 +40,13 @@ function getCards(sessionId) {
           cardContent: item.cardContent,
           cardSupportCount: item.cardSupportCount,
           cardCommentCount: item.cardCommentCount,
-          cardSupportWhether: cardSupportWhether
+          cardSupportWhether: cardSupportWhether,
         };
         payload.push(payloadItem);
       }
-      resolve(new ResponseObj(1, "success", payload));
+      resolve(new ResponseObj(1, 'success', payload));
     }
   });
 }
 
-module.exports = { getCards };
+export default getCards;

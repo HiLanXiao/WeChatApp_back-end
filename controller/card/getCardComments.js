@@ -1,29 +1,25 @@
-const axios = require("axios");
-const crypto = require("crypto");
-const { env } = process;
-const models = require("../models");
-const ResponseObj = require("../utils/someObj");
-
+const models = require('../../models');
+const { timeConvert } = require('../../utils/utils');
 
 function getCardComments(cardId) {
   return new Promise(async (resolve, reject) => {
     let payload = {},
       cards = await models.cards.findAll({
         where: {
-          cardId: cardId
-        }
+          cardId: cardId,
+        },
       }),
       comments = await models.comments.findAll({
         where: {
-          cardId: cardId
-        }
+          cardId: cardId,
+        },
       });
     if (!cards.length) {
-      reject(new Error("帖子不存在"));
+      reject(new Error('帖子不存在'));
     } else {
     }
     if (!comments.length) {
-      reject(new Error("评论不存在"));
+      reject(new Error('评论不存在'));
     } else {
       for (let comment of comments) {
       }
@@ -35,4 +31,4 @@ function getCardComments(cardId) {
   });
 }
 
-module.exports = { getCardComments };
+export default getCardComments;
