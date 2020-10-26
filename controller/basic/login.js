@@ -2,7 +2,7 @@ const axios = require('axios');
 const crypto = require('crypto');
 const { env } = process;
 const models = require('../../models');
-const { ResponseObj } = require('../../utils/utils');
+import { ResponseObj } from '../../utils/utils';
 
 function login(code) {
   return new Promise((resolve, reject) => {

@@ -1,5 +1,5 @@
 import { cardController } from '../controller/card';
-const { ResponseObj } = require('../utils/utils');
+import { ResponseObj } from '../utils/utils';
 
 let route_card = [
   {

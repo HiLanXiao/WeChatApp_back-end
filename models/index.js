@@ -8,7 +8,7 @@ const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = {
-  ...require('../config/config.js')[env],
+  ...require('../config/configs.js')[env],
   define: {
     timezone: '+08:00',
     charset: 'utf8',

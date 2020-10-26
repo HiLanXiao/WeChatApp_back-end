@@ -1,5 +1,5 @@
 import { basicController } from '../controller/basic';
-const { ResponseObj } = require('../utils/utils');
+import { ResponseObj } from '../utils/utils';
 
 let route_basic = [
   {

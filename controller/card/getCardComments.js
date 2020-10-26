@@ -1,5 +1,5 @@
 const models = require('../../models');
-const { timeConvert } = require('../../utils/utils');
+import { timeConvert } from '../../utils/utils';
 
 function getCardComments(cardId) {
   return new Promise(async (resolve, reject) => {

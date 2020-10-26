@@ -1,5 +1,5 @@
 function timeConvert(time) {
-  return time.getFullYear() + "年" + time.getMonth() + "月" + time.getDay() + "日";
+  return time.getFullYear() + '年' + time.getMonth() + '月' + time.getDay() + '日';
 }
 
 class ResponseObj {
@@ -10,4 +10,4 @@ class ResponseObj {
   }
 }
 
-module.exports = { ResponseObj, timeConvert };
+export { ResponseObj, timeConvert };
