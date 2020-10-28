@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi');
+const Joi = require('joi');
 import { cardController } from '../controller/card';
 import { ResponseObj } from '../utils/utils';
 

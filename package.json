@@ -14,23 +14,22 @@
   "author": "Lange Zhang",
   "license": "ISC",
   "dependencies": {
-    "@hapi/hapi": "^19.1.1",
+    "@hapi/hapi": "^20.0.1",
     "@hapi/inert": "^6.0.1",
-    "@hapi/joi": "^17.1.1",
     "@hapi/vision": "^6.0.0",
     "axios": "^0.19.2",
     "babel-preset-stage-2": "^6.24.1",
     "env2": "^2.2.2",
+    "joi": "^17.3.0",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.5"
   },
   "devDependencies": {
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
     "es-checker": "^1.4.2",
-    "hapi-swagger": "^12.1.1",
+    "hapi-swagger": "^14.0.0",
     "nodemon": "^2.0.6",
     "sequelize-cli": "^5.5.1"
   }
