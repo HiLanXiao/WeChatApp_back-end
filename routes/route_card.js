@@ -15,11 +15,6 @@ export const route_card = [
         }),
       },
     },
-    handler: async (req, res) => {
-      let responseObj = await cardController.getCardComments(req.query.cardId).catch((e) => {
-        return new ResponseObj(0, e.message);
-      });
-      return res.response(responseObj).code(200);
-    },
+    handler: cardController.getCardComments,
   },
 ];

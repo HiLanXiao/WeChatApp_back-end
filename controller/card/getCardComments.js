@@ -1,8 +1,9 @@
 import { db as models } from '../../models';
 import { timeConvert } from '../../utils/utils';
 
-function getCardComments(cardId) {
-  return new Promise(async (resolve, reject) => {
+const getCardComments = async (req, res) => {
+  const cardId = req.query.cardId;
+  let responseObj = await new Promise(async (resolve, reject) => {
     let payload = {},
       cards = await models.cards.findAll({
         where: {
@@ -25,9 +26,13 @@ function getCardComments(cardId) {
       }
       payload = comments[0];
       payload.dataValues.createdAt = timeConvert(payload.createdAt);
+      // TODO: 显然这里没写完= =
       resolve();
     }
+  }).catch((e) => {
+    return new ResponseObj(0, e.message);
   });
-}
+  return res.response(responseObj).code(200);
+};
 
 export default getCardComments;

@@ -1,6 +1,5 @@
 const Joi = require('joi');
 import { basicController } from '../controller/basic';
-import { ResponseObj } from '../utils/utils';
 
 export const route_basic = [
   {

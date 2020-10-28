@@ -1,5 +1,2 @@
-require('babel-register')({
-  presets: ['env']
-})
-
-module.exports = require('./app.js')
+require('@babel/register');
+require('./app.js');
