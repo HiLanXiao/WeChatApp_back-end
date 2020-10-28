@@ -1,8 +1,9 @@
-const models = require('../../models');
+import { db as models } from '../../models';
 import { ResponseObj, timeConvert } from '../../utils/utils';
 
-function getCards(sessionId) {
-  return new Promise(async (resolve, reject) => {
+const getCards = async (req, res) => {
+  const sessionId = req.query.sessionId;
+  let responseObj = await new Promise(async (resolve, reject) => {
     let payload = [],
       userId,
       user = await models.users.findAll({
@@ -46,7 +47,10 @@ function getCards(sessionId) {
       }
       resolve(new ResponseObj(1, 'success', payload));
     }
+  }).catch((e) => {
+    return new ResponseObj(0, e.message);
   });
-}
+  return res.response(responseObj).code(200);
+};
 
 export default getCards;

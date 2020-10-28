@@ -1,11 +1,12 @@
 const axios = require('axios');
 const crypto = require('crypto');
 const { env } = process;
-const models = require('../../models');
+import { db as models } from '../../models';
 import { ResponseObj } from '../../utils/utils';
 
-function login(code) {
-  return new Promise((resolve, reject) => {
+const login = async (req, res) => {
+  const code = req.query.code;
+  let responseObj = await new Promise((resolve, reject) => {
     axios({
       method: 'GET',
       url: 'https://api.weixin.qq.com/sns/jscode2session',
@@ -22,11 +23,8 @@ function login(code) {
       } else {
         let payload = {},
           sessionId;
-
         sessionId = crypto.createHash('sha1').update(data.openid, 'utf8').digest('hex');
-
         payload = { sessionId: sessionId };
-
         await models.users.findOrCreate({
           where: {
             sessionId: sessionId,
@@ -35,7 +33,11 @@ function login(code) {
         resolve(new ResponseObj(1, 'success', payload));
       }
     });
+  }).catch((e) => {
+    console.log(e.message);
+    return new ResponseObj(0, `缺少相应参数或微信登录接口出错`);
   });
-}
+  return res.response(responseObj).code(200);
+};
 
 export default login;

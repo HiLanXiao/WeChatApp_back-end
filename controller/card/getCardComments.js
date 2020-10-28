@@ -1,4 +1,4 @@
-const models = require('../../models');
+import { db as models } from '../../models';
 import { timeConvert } from '../../utils/utils';
 
 function getCardComments(cardId) {
@@ -27,7 +27,6 @@ function getCardComments(cardId) {
       payload.dataValues.createdAt = timeConvert(payload.createdAt);
       resolve();
     }
-    console.log(comments);
   });
 }
 

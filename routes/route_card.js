@@ -1,24 +1,25 @@
+const Joi = require('@hapi/joi');
 import { cardController } from '../controller/card';
 import { ResponseObj } from '../utils/utils';
 
-let route_card = [
+export const route_card = [
   {
     method: 'GET',
     path: '/card/getCardComments',
     options: {
       tags: ['api', 'card'],
-      description: '帖子接口',
+      description: '拉取帖子评论接口',
+      validate: {
+        query: Joi.object({
+          cardId: Joi.string().description('帖子的cardId'),
+        }),
+      },
     },
     handler: async (req, res) => {
-      try {
-        let responseObj = await cardController.getCardComments(req.query.cardId);
-        return res.response(responseObj).code(200);
-      } catch (e) {
-        console.log(e);
-        let responseObj = new ResponseObj(0, e.message);
-        return res.response(responseObj).code(200);
-      }
+      let responseObj = await cardController.getCardComments(req.query.cardId).catch((e) => {
+        return new ResponseObj(0, e.message);
+      });
+      return res.response(responseObj).code(200);
     },
   },
 ];
-module.exports = { route_card };
