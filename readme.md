@@ -1,5 +1,16 @@
 ### 微信小程序后端程序
 
+```shell
+1. npm i
+2. 按照 mysql 和 微信小程序实际信息修改 config 目录下的两个 env 文件，去除命名中的"_example"
+3. npx sequelize db:create
+4. npx sequelize-cli db:migrate
+5. npx sequelize db:seed:all
+6. npm run dev
+```
+
+
+
 ```javascript
 |-- WeChatApp_back-end
     |-- .babelrc
