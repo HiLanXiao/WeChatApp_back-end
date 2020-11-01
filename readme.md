@@ -1,4 +1,10 @@
 ### 微信小程序后端程序
+- 后端框架选择为 hapi，数据库选择为 mysql
+- 利用 hapi-swagger 自动生成接口文档
+- 利用 axios 做 ajax 请求
+- 利用 sequlize 做 orm
+- 利用 joi 做参数校验
+- 利用 nodemon 做开发阶段热更新
 
 ```shell
 1. npm i
@@ -6,7 +12,8 @@
 3. npx sequelize db:create
 4. npx sequelize-cli db:migrate
 5. npx sequelize db:seed:all
-6. npm run dev
+6. 启动服务 npm run dev
+7. pm2 部署服务 npm run deploy
 ```
 
 

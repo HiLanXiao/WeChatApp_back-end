@@ -1,0 +1,7 @@
+{
+  "name": "wechat_back_end",
+  "script": "./index.js",
+  "instances": 2,
+  "cwd": ".",
+  "exec_mode": "cluster"
+}
